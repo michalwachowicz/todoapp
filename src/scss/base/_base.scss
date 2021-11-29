@@ -1,0 +1,10 @@
+@use '../abstracts/variables' as *;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: $font-stack;
+}
