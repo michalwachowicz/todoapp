@@ -14,7 +14,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jpe?g|webp|git|svg|)$/,
+        test: /\.(png|jpe?g|webp|git)$/,
         use: [
           {
             loader: 'img-optimize-loader',
@@ -27,6 +27,10 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader',
       },
     ],
   },

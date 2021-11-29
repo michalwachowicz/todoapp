@@ -12,9 +12,9 @@ const Navbar = (() => {
   title.className = 'header__title'
   title.textContent = 'TodoApp'
 
-  navBar.appendChild(MenuIcon('header__icon-menu'))
+  navBar.appendChild(MenuIcon('header__icon header__icon--menu'))
   navBar.appendChild(title)
-  navBar.appendChild(AddIcon('header__icon-add'))
+  navBar.appendChild(AddIcon('header__icon header__icon--add'))
   header.appendChild(navBar)
 
   return header
