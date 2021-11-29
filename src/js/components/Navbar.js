@@ -1,5 +1,6 @@
 import MenuIcon from './icons/MenuIcon'
 import AddIcon from './icons/AddIcon'
+import Menu from './Menu'
 
 const Navbar = (() => {
   const header = document.createElement('header')
@@ -12,7 +13,10 @@ const Navbar = (() => {
   title.className = 'header__title'
   title.textContent = 'TodoApp'
 
-  navBar.appendChild(MenuIcon('header__icon header__icon--menu'))
+  const menuIcon = MenuIcon('header__icon header__icon--menu')
+  menuIcon.addEventListener('click', Menu.toggleHide)
+
+  navBar.appendChild(menuIcon)
   navBar.appendChild(title)
   navBar.appendChild(AddIcon('header__icon header__icon--add'))
   header.appendChild(navBar)
