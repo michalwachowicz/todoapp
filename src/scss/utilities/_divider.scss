@@ -1,0 +1,7 @@
+@use '../abstracts/variables' as *;
+
+hr.divider {
+  margin: 1.25rem 0;
+  border: none;
+  border-top: 2px solid $stroke-color;
+}
