@@ -58,7 +58,10 @@ const NewTagBtn = (submitEvent) => {
       e.preventDefault()
 
       generateButton()
-      submitEvent()
+      submitEvent({
+        color: currentColor.getAttribute('data-color'),
+        title: nameInput.value,
+      })
     })
 
     element.innerHTML = ''

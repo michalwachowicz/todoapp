@@ -4,12 +4,8 @@ import MenuTag from './MenuTag'
 import NewTagBtn from './NewTagBtn'
 
 const MenuTags = (() => {
-  const dummyTags = [
-    { id: 0, color: '#4DABF7', title: 'Work' },
-    { id: 1, color: '#DA77F2', title: 'School' },
-    { id: 2, color: '#FFD43B', title: 'Personal' },
-  ]
-  const tagElements = []
+  const tags = localStorage.getItem('tags') ? JSON.parse(localStorage.tags) : []
+  let tagElements = []
   const element = document.createElement('div')
   element.className = 'menu__tags-container'
 
@@ -20,6 +16,7 @@ const MenuTags = (() => {
     if (tags.length > 0) {
       const tagsContainer = document.createElement('div')
       tagsContainer.className = 'menu__tags'
+      tagElements = []
 
       for (let tag of tags) {
         const tagElement = MenuTag(tag, (e) => console.log(e))
@@ -36,10 +33,19 @@ const MenuTags = (() => {
         )
       )
     }
-    element.appendChild(NewTagBtn(() => console.log('Test')))
+    element.appendChild(
+      NewTagBtn((tag) => {
+        const lastId = tags[tags.length - 1]
+        const id = tags.length > 0 && lastId ? lastId + 1 : 0
+
+        tags.push({ id: id, ...tag })
+        localStorage.tags = JSON.stringify(tags)
+
+        generateTags(tags)
+      })
+    )
   }
-  // generateTags(dummyTags)
-  generateTags([])
+  generateTags(tags)
 
   return { element, generateTags }
 })()
