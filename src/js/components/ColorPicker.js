@@ -35,6 +35,7 @@ const ColorPicker = (() => {
         currentTarget.style.backgroundColor = color
         currentTarget.setAttribute('data-color', color)
       }
+      element.classList.add('hidden')
     })
     colorContainer.appendChild(colorElement)
   }
