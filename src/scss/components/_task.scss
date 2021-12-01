@@ -1,0 +1,79 @@
+@use '../abstracts' as *;
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+
+  &--done &__info__title,
+  &--done &__info__desc {
+    color: $stroke-color;
+    text-decoration: line-through;
+  }
+
+  &--done * {
+    color: $stroke-color;
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+
+    &__title {
+      margin-bottom: 0.5rem;
+      color: $black;
+      font-size: 1.75rem;
+      font-weight: 400;
+    }
+
+    &__desc {
+      color: $gray-text;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    &__additional {
+      @include desktop {
+        text-align: right;
+      }
+    }
+
+    &__tag {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.75rem;
+
+      @include desktop {
+        justify-content: flex-end;
+      }
+
+      &__title {
+        font-size: 1.2rem;
+        font-weight: 300;
+      }
+
+      &__color {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+      }
+    }
+
+    &__date {
+      margin-top: 0.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+}

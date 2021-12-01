@@ -1,3 +1,43 @@
+@use '../abstracts/variables' as *;
+
 .tasks-view {
   flex: 1;
+  padding: 2rem;
+
+  &__title {
+    color: $black;
+    font-size: 4rem;
+    font-weight: 900;
+  }
+
+  &__tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &__title {
+      color: $gray-text;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    &__icon {
+      width: 1.75rem;
+      height: 1.75rem;
+
+      path {
+        fill: $main-color;
+      }
+    }
+  }
 }

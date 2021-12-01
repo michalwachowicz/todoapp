@@ -29,12 +29,15 @@ const MenuPriorities = (() => {
   }
   generatePriorities(priorities)
 
+  const getPriorityById = (id) =>
+    priorities.find((priority) => priority.id == id)
+
   const clearActives = () => {
     priorityElements.forEach((priorityElement) =>
       priorityElement.removeActiveClass()
     )
   }
-  return { element, clearActives }
+  return { element, clearActives, getPriorityById }
 })()
 
 export default MenuPriorities

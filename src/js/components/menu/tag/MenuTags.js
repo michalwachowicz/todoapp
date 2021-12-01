@@ -47,7 +47,9 @@ const MenuTags = (() => {
   }
   generateTags(tags)
 
-  return { element, generateTags }
+  const getTagById = (id) => tags.find((tag) => tag.id == id)
+
+  return { element, generateTags, getTagById }
 })()
 
 export default MenuTags
