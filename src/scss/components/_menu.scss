@@ -8,6 +8,48 @@
   background-color: $light-gray;
   border-right: 2px solid $stroke-color;
 
+  &__title {
+    margin: 1.25rem 0;
+    color: $dark-gray;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  &__priorities,
+  &__tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  &__priority,
+  &__tag {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.25rem;
+
+    &__title {
+      color: $dark-gray;
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+
+    &--active {
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &__color-symbol {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+  }
+
   &__options {
     display: flex;
     flex-direction: column;

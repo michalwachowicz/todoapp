@@ -1,5 +1,5 @@
 export const cleanContent = (node) => {
-  node.innerHTML = node
+  node.innerHTML = ''
 }
 
 export const generateContent = (node, content) => {

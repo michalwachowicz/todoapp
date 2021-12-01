@@ -1,6 +1,6 @@
-import InboxIcon from './icons/InboxIcon'
-import TodayIcon from './icons/TodayIcon'
-import NextDaysIcon from './icons/NextDaysIcon'
+import InboxIcon from '../../icons/InboxIcon'
+import TodayIcon from '../../icons/TodayIcon'
+import NextDaysIcon from '../../icons/NextDaysIcon'
 import MenuOption from './MenuOption'
 
 const MenuOptions = (() => {

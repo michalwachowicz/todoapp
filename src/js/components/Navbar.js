@@ -1,6 +1,6 @@
 import MenuIcon from './icons/MenuIcon'
 import AddIcon from './icons/AddIcon'
-import Menu from './Menu'
+import Menu from './menu/Menu'
 
 const Navbar = (() => {
   const header = document.createElement('header')
