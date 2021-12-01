@@ -1,4 +1,5 @@
 import AddIcon from '../../icons/AddIcon'
+import ColorPicker from '../../ColorPicker'
 
 const NewTagBtn = (submitEvent) => {
   const element = document.createElement('div')
@@ -32,6 +33,10 @@ const NewTagBtn = (submitEvent) => {
     currentColor.style.backgroundColor = '#ff6b6b'
     currentColor.setAttribute('data-color', '#ff6b6b')
 
+    colorPicker.addEventListener('click', (e) => {
+      e.preventDefault()
+      ColorPicker.generate(currentColor, e.x, e.clientY + 50)
+    })
     colorPicker.appendChild(currentColor)
 
     const nameInput = document.createElement('input')
