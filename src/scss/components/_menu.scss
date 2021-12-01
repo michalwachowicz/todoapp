@@ -7,6 +7,7 @@
   padding: 1.5rem 1rem;
   background-color: $light-gray;
   border-right: 2px solid $stroke-color;
+  overflow-y: scroll;
 
   &__title {
     margin: 1.25rem 0;
