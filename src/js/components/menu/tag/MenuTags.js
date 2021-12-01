@@ -1,6 +1,7 @@
 import EmptyMessage from '../../EmptyMessage'
 import MenuTitle from '../MenuTitle'
 import MenuTag from './MenuTag'
+import NewTagBtn from './NewTagBtn'
 
 const MenuTags = (() => {
   const dummyTags = [
@@ -35,6 +36,7 @@ const MenuTags = (() => {
         )
       )
     }
+    element.appendChild(NewTagBtn(() => console.log('Test')))
   }
   // generateTags(dummyTags)
   generateTags([])
