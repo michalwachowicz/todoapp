@@ -1,4 +1,6 @@
-const MenuTag = ({ id, color, title }, clickEvent) => {
+import TasksView from '../../task/TasksView'
+
+const MenuTag = ({ id, color, title }, clickEvent, tasks) => {
   const element = document.createElement('div')
   element.setAttribute('data-id', id)
   element.className = 'menu__tag'
@@ -13,14 +15,19 @@ const MenuTag = ({ id, color, title }, clickEvent) => {
 
   element.appendChild(colorSymbol)
   element.appendChild(titleElement)
-  element.addEventListener('click', clickEvent)
+  element.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    clickEvent()
+    TasksView.generateTasks(title, tasks)
+  })
 
   const addActiveClass = () => {
-    element.classList.add('menu__priority--active')
+    element.classList.add('menu__tag--active')
   }
 
   const removeActiveClass = () => {
-    element.classList.remove('menu__priority--active')
+    element.classList.remove('menu__tag--active')
   }
 
   return { element, addActiveClass, removeActiveClass }

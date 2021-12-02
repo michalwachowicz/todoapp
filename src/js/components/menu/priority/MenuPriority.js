@@ -1,4 +1,6 @@
-const MenuPriority = ({ id, color, title }, clickEvent) => {
+import TasksView from '../../task/TasksView'
+
+const MenuPriority = ({ id, color, title }, clickEvent, tasks) => {
   const element = document.createElement('div')
   element.setAttribute('data-id', id)
   element.className = 'menu__priority'
@@ -13,7 +15,12 @@ const MenuPriority = ({ id, color, title }, clickEvent) => {
 
   element.appendChild(colorSymbol)
   element.appendChild(titleElement)
-  element.addEventListener('click', clickEvent)
+  element.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    clickEvent()
+    TasksView.generateTasks(title, tasks)
+  })
 
   const addActiveClass = () => {
     element.classList.add('menu__priority--active')

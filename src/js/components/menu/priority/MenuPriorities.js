@@ -1,3 +1,5 @@
+import Tasks from '../../../data/tasks'
+import Menu from '../Menu'
 import MenuTitle from '../MenuTitle'
 import MenuPriority from './MenuPriority'
 
@@ -17,7 +19,14 @@ const MenuPriorities = (() => {
     prioritiesContainer.className = 'menu__priorities'
 
     for (let priority of priorities) {
-      const priorityElement = MenuPriority(priority, (e) => console.log(e))
+      const priorityElement = MenuPriority(
+        priority,
+        () => {
+          Menu.cleanActives()
+          priorityElement.addActiveClass()
+        },
+        Tasks.getSortedTasks().filter((task) => task.priorityId == priority.id)
+      )
 
       priorityElements.push(priorityElement)
       prioritiesContainer.appendChild(priorityElement.element)
@@ -37,7 +46,7 @@ const MenuPriorities = (() => {
       priorityElement.removeActiveClass()
     )
   }
-  return { element, clearActives, getPriorityById }
+  return { element, clearActives, getPriorityById, priorityElements }
 })()
 
 export default MenuPriorities

@@ -2,6 +2,8 @@ import EmptyMessage from '../../EmptyMessage'
 import MenuTitle from '../MenuTitle'
 import MenuTag from './MenuTag'
 import NewTagBtn from './NewTagBtn'
+import Menu from '../Menu'
+import Tasks from '../../../data/tasks'
 
 const MenuTags = (() => {
   const tags = localStorage.getItem('tags') ? JSON.parse(localStorage.tags) : []
@@ -19,7 +21,14 @@ const MenuTags = (() => {
       tagElements = []
 
       for (let tag of tags) {
-        const tagElement = MenuTag(tag, (e) => console.log(e))
+        const tagElement = MenuTag(
+          tag,
+          () => {
+            Menu.cleanActives()
+            tagElement.addActiveClass()
+          },
+          Tasks.getSortedTasks().filter((task) => task.tagId == tag.id)
+        )
 
         tagElements.push(tagElement)
         tagsContainer.appendChild(tagElement.element)
@@ -35,8 +44,10 @@ const MenuTags = (() => {
     }
     element.appendChild(
       NewTagBtn((tag) => {
-        const lastId = tags[tags.length - 1]
-        const id = tags.length > 0 && lastId ? lastId + 1 : 0
+        const id =
+          tags.length > 0 && tags[tags.length - 1].id
+            ? tags[tags.length - 1].id + 1
+            : 0
 
         tags.push({ id: id, ...tag })
         localStorage.tags = JSON.stringify(tags)
@@ -49,7 +60,7 @@ const MenuTags = (() => {
 
   const getTagById = (id) => tags.find((tag) => tag.id == id)
 
-  return { element, generateTags, getTagById }
+  return { element, generateTags, getTagById, tagElements }
 })()
 
 export default MenuTags

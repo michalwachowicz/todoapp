@@ -1,18 +1,34 @@
-const MenuOption = (icon, title, active, clickEvent) => {
+import TasksView from '../../task/TasksView'
+
+const MenuOption = (icon, title, tasks) => {
   const element = document.createElement('div')
-  element.className = active
-    ? 'menu__option menu__option--active'
-    : 'menu__option'
-  element.addEventListener('click', clickEvent)
+  element.className = 'menu__option'
 
   const titleElement = document.createElement('h3')
   titleElement.className = 'menu__option__title'
   titleElement.textContent = title
 
+  const addActiveClass = () => {
+    element.classList.add('menu__option--active')
+  }
+
+  const removeActiveClass = () => {
+    element.classList.remove('menu__option--active')
+  }
+
   element.appendChild(icon)
   element.appendChild(titleElement)
 
-  return element
+  const addClickEvent = (clickEvent) => {
+    element.addEventListener('click', (e) => {
+      e.preventDefault()
+
+      clickEvent()
+      TasksView.generateTasks(title, tasks)
+    })
+  }
+
+  return { element, addActiveClass, removeActiveClass, addClickEvent }
 }
 
 export default MenuOption
