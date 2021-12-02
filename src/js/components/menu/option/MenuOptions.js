@@ -21,7 +21,8 @@ const MenuOptions = (() => {
       'Today',
       Tasks.getSortedTasks().filter((task) => {
         const currentDate = new Date()
-        return task.dueDate.getDate() <= currentDate.getDate()
+        currentDate.setHours(0, 0, 0, 0)
+        return task.dueDate && task.dueDate.getDate() <= currentDate.getDate()
       })
     ),
     MenuOption(
@@ -30,8 +31,9 @@ const MenuOptions = (() => {
       Tasks.getSortedTasks().filter((task) => {
         let date = new Date()
         date.setDate(date.getDate() + 7)
+        date.setHours(0, 0, 0, 0)
 
-        return task.dueDate.getDate() <= date.getDate()
+        return task.dueDate && task.dueDate.getDate() <= date.getDate()
       })
     ),
   ]

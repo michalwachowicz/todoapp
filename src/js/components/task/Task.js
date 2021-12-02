@@ -35,29 +35,42 @@ const Task = ({ title, description, dueDate, priorityId, tagId, done }) => {
   const additional = document.createElement('div')
   additional.className = 'task__info__additional'
 
-  const tag = MenuTags.getTagById(tagId)
-  const tagContainer = document.createElement('div')
-  tagContainer.className = 'task__info__tag'
+  if (tagId > -1) {
+    const tag = MenuTags.getTagById(tagId)
+    const tagContainer = document.createElement('div')
+    tagContainer.className = 'task__info__tag'
 
-  const tagTitle = document.createElement('h3')
-  tagTitle.className = 'task__info__tag__title'
-  tagTitle.textContent = tag.title
+    const tagTitle = document.createElement('h3')
+    tagTitle.className = 'task__info__tag__title'
+    tagTitle.textContent = tag.title
 
-  const tagColor = document.createElement('div')
-  tagColor.className = 'task__info__tag__color'
-  tagColor.style.backgroundColor = tag.color
+    const tagColor = document.createElement('div')
+    tagColor.className = 'task__info__tag__color'
+    tagColor.style.backgroundColor = tag.color
 
-  tagContainer.appendChild(tagTitle)
-  tagContainer.appendChild(tagColor)
-  additional.appendChild(tagContainer)
+    tagContainer.appendChild(tagTitle)
+    tagContainer.appendChild(tagColor)
+    additional.appendChild(tagContainer)
+  }
 
-  const date = document.createElement('p')
-  const currentDate = new Date()
-  date.className = 'task__info__date'
-  date.textContent = formatDistance(dueDate, currentDate, { addSuffix: true })
-  date.style.color = done ? '' : dueDate >= currentDate ? '#66a80f' : '#e03131'
+  if (dueDate) {
+    const date = document.createElement('p')
+    const currentDate = new Date()
+    currentDate.setHours(0, 0, 0, 0)
 
-  additional.appendChild(date)
+    date.className = 'task__info__date'
+    date.textContent =
+      dueDate.getDate() == currentDate.getDate()
+        ? 'Today'
+        : formatDistance(dueDate, currentDate, { addSuffix: true })
+    date.style.color = done
+      ? ''
+      : dueDate >= currentDate
+      ? '#66a80f'
+      : '#e03131'
+
+    additional.appendChild(date)
+  }
   info.appendChild(titleDesc)
   info.appendChild(additional)
 

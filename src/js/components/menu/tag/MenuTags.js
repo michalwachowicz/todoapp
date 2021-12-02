@@ -4,9 +4,10 @@ import MenuTag from './MenuTag'
 import NewTagBtn from './NewTagBtn'
 import Menu from '../Menu'
 import Tasks from '../../../data/tasks'
+import Tags from '../../../data/tags'
+import NewTaskForm from '../../task/NewTaskForm'
 
 const MenuTags = (() => {
-  const tags = localStorage.getItem('tags') ? JSON.parse(localStorage.tags) : []
   let tagElements = []
   const element = document.createElement('div')
   element.className = 'menu__tags-container'
@@ -44,23 +45,16 @@ const MenuTags = (() => {
     }
     element.appendChild(
       NewTagBtn((tag) => {
-        const id =
-          tags.length > 0 && tags[tags.length - 1].id
-            ? tags[tags.length - 1].id + 1
-            : 0
+        Tags.addTag(tag)
+        NewTaskForm.updateTags(Tags.getTags())
 
-        tags.push({ id: id, ...tag })
-        localStorage.tags = JSON.stringify(tags)
-
-        generateTags(tags)
+        generateTags(Tags.getTags())
       })
     )
   }
-  generateTags(tags)
+  generateTags(Tags.getTags())
 
-  const getTagById = (id) => tags.find((tag) => tag.id == id)
-
-  return { element, generateTags, getTagById, tagElements }
+  return { element, generateTags, tagElements }
 })()
 
 export default MenuTags

@@ -1,0 +1,138 @@
+@use '../abstracts' as *;
+
+.task-form {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 0 1rem;
+
+  * {
+    z-index: 999;
+  }
+
+  &__popup {
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.9);
+    background-color: $background-color;
+  }
+
+  &__title {
+    color: $black;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+
+  &__form {
+    &__inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    &__title,
+    &__desc {
+      padding: 0.5rem;
+      border: 1px solid $stroke-color;
+      border-radius: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    &__title {
+      height: 2.5rem;
+    }
+
+    &__desc {
+      height: 8rem;
+      resize: none;
+      font-family: $font-stack;
+    }
+
+    &__options {
+      display: flex;
+      width: 100%;
+      border: 1px solid $stroke-color;
+      padding: 0.25rem;
+      border-radius: 0.5rem;
+
+      * {
+        flex: 1;
+      }
+
+      @include phone {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+    }
+
+    &__select,
+    &__date {
+      height: 2.2rem;
+      border: none;
+      border-right: 1px solid $stroke-color;
+      font-family: $font-stack;
+      padding: 0.5rem;
+
+      @include phone {
+        border-right: none;
+        border-bottom: 1px solid $stroke-color;
+      }
+    }
+
+    &__date {
+      padding-left: 0.5rem;
+    }
+
+    &__select:last-child {
+      border: none;
+    }
+
+    &__btns {
+      display: flex;
+      margin-top: 1rem;
+      gap: 0.25rem;
+
+      * {
+        flex: 1;
+      }
+
+      @include phone {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    &__btn {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      background: none;
+      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.25);
+      font-size: 1.25rem;
+      font-weight: 500;
+
+      &--submit {
+        color: #fff;
+        background-color: #82c91e;
+      }
+
+      &--cancel {
+        color: $black;
+        background-color: #ced4da;
+      }
+
+      &--delete {
+        color: #fff;
+        background-color: #e03131;
+      }
+    }
+  }
+}

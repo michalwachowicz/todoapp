@@ -1,6 +1,7 @@
 import Divider from '../Divider'
 import EmptyMessage from '../EmptyMessage'
 import AddIcon from '../icons/AddIcon'
+import NewTaskForm from './NewTaskForm'
 import Task from './Task'
 
 const TasksView = (() => {
@@ -37,6 +38,7 @@ const TasksView = (() => {
 
     const btn = document.createElement('button')
     btn.className = 'tasks-view__btn'
+    btn.addEventListener('click', () => NewTaskForm.updateForm(null))
 
     const btnTitle = document.createElement('h3')
     btnTitle.className = 'tasks-view__btn__title'
