@@ -1,6 +1,9 @@
 import TasksView from '../../task/TasksView'
+import CurrentMenuOption from '../CurrentMenuOption'
 
 const MenuOption = (icon, title, tasks) => {
+  let sortedTasks = tasks
+
   const element = document.createElement('div')
   element.className = 'menu__option'
 
@@ -24,11 +27,20 @@ const MenuOption = (icon, title, tasks) => {
       e.preventDefault()
 
       clickEvent()
-      TasksView.generateTasks(title, tasks)
+      TasksView.generateTasks(title, sortedTasks)
+      CurrentMenuOption.setElement(element)
     })
   }
 
-  return { element, addActiveClass, removeActiveClass, addClickEvent }
+  const updateTasks = (updatedTasks) => (sortedTasks = updatedTasks)
+
+  return {
+    element,
+    addActiveClass,
+    removeActiveClass,
+    addClickEvent,
+    updateTasks,
+  }
 }
 
 export default MenuOption

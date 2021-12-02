@@ -2,6 +2,7 @@ import TaskStatusIcon from '../icons/TaskStatusIcon'
 import MenuPriorities from '../menu/priority/MenuPriorities'
 import MenuTags from '../menu/tag/MenuTags'
 import formatDistance from 'date-fns/formatDistance'
+import Tags from '../../data/tags'
 
 const Task = ({ title, description, dueDate, priorityId, tagId, done }) => {
   const element = document.createElement('div')
@@ -36,7 +37,7 @@ const Task = ({ title, description, dueDate, priorityId, tagId, done }) => {
   additional.className = 'task__info__additional'
 
   if (tagId > -1) {
-    const tag = MenuTags.getTagById(tagId)
+    const tag = Tags.getTagById(tagId)
     const tagContainer = document.createElement('div')
     tagContainer.className = 'task__info__tag'
 

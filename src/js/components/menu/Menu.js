@@ -2,6 +2,8 @@ import MenuOptions from './option/MenuOptions'
 import MenuTags from './tag/MenuTags'
 import Divider from '../Divider'
 import MenuPriorities from './priority/MenuPriorities'
+import Tasks from '../../data/tasks'
+import CurrentMenuOption from './CurrentMenuOption'
 
 const Menu = (() => {
   const element = document.createElement('aside')
@@ -27,11 +29,22 @@ const Menu = (() => {
     }
   }
 
+  const updateTasks = () => {
+    const tasks = Tasks.getSortedTasks()
+
+    MenuOptions.updateTasks(tasks)
+    MenuTags.updateTasks(tasks)
+    MenuPriorities.updateTasks(tasks)
+
+    const currentMenuOption = CurrentMenuOption.getElement()
+    if (currentMenuOption) currentMenuOption.click()
+  }
+
   const toggleHide = () => {
     element.classList.toggle('hidden')
   }
 
-  return { element, toggleHide, cleanActives }
+  return { element, toggleHide, cleanActives, updateTasks }
 })()
 
 export default Menu

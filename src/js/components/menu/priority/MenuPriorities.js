@@ -5,14 +5,17 @@ import MenuPriority from './MenuPriority'
 
 const MenuPriorities = (() => {
   const priorities = [
-    { id: 0, color: '#FF6B6B', title: 'High' },
+    { id: 0, color: '#94D82D', title: 'Low' },
     { id: 1, color: '#FCC419', title: 'Medium' },
-    { id: 2, color: '#94D82D', title: 'Low' },
+    { id: 2, color: '#FF6B6B', title: 'High' },
   ]
   const priorityElements = []
 
   const element = document.createElement('div')
   element.className = 'menu__priorities-container'
+
+  const filter = (tasks, priority) =>
+    tasks.filter((task) => task.priorityId == priority.id)
 
   const generatePriorities = () => {
     const prioritiesContainer = document.createElement('div')
@@ -25,7 +28,7 @@ const MenuPriorities = (() => {
           Menu.cleanActives()
           priorityElement.addActiveClass()
         },
-        Tasks.getSortedTasks().filter((task) => task.priorityId == priority.id)
+        filter(Tasks.getSortedTasks(), priority)
       )
 
       priorityElements.push(priorityElement)
@@ -46,7 +49,20 @@ const MenuPriorities = (() => {
       priorityElement.removeActiveClass()
     )
   }
-  return { element, clearActives, getPriorityById, priorityElements }
+
+  const updateTasks = (updatedTasks) => {
+    for (let i = 0; i < priorities.length; i++) {
+      priorityElements[i].updateTasks(filter(updatedTasks, priorities[i]))
+    }
+  }
+
+  return {
+    element,
+    clearActives,
+    getPriorityById,
+    priorityElements,
+    updateTasks,
+  }
 })()
 
 export default MenuPriorities

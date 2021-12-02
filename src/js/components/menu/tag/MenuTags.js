@@ -12,14 +12,16 @@ const MenuTags = (() => {
   const element = document.createElement('div')
   element.className = 'menu__tags-container'
 
+  const filter = (tasks, tag) => tasks.filter((task) => task.tagId == tag.id)
+
   const generateTags = (tags) => {
     element.innerHTML = ''
     element.appendChild(MenuTitle('Tags'))
+    tagElements = []
 
     if (tags.length > 0) {
       const tagsContainer = document.createElement('div')
       tagsContainer.className = 'menu__tags'
-      tagElements = []
 
       for (let tag of tags) {
         const tagElement = MenuTag(
@@ -28,7 +30,7 @@ const MenuTags = (() => {
             Menu.cleanActives()
             tagElement.addActiveClass()
           },
-          Tasks.getSortedTasks().filter((task) => task.tagId == tag.id)
+          filter(Tasks.getSortedTasks(), tag)
         )
 
         tagElements.push(tagElement)
@@ -54,7 +56,17 @@ const MenuTags = (() => {
   }
   generateTags(Tags.getTags())
 
-  return { element, generateTags, tagElements }
+  const updateTasks = (updatedTasks) => {
+    const tags = Tags.getTags()
+
+    if (tags.length > 0) {
+      for (let i = 0; i < tags.length; i++) {
+        tagElements[i].updateTasks(filter(updatedTasks, tags[i]))
+      }
+    }
+  }
+
+  return { element, generateTags, tagElements, updateTasks }
 })()
 
 export default MenuTags

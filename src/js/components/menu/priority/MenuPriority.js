@@ -1,6 +1,8 @@
 import TasksView from '../../task/TasksView'
+import CurrentMenuOption from '../CurrentMenuOption'
 
 const MenuPriority = ({ id, color, title }, clickEvent, tasks) => {
+  let sortedTasks = tasks
   const element = document.createElement('div')
   element.setAttribute('data-id', id)
   element.className = 'menu__priority'
@@ -19,7 +21,8 @@ const MenuPriority = ({ id, color, title }, clickEvent, tasks) => {
     e.preventDefault()
 
     clickEvent()
-    TasksView.generateTasks(title, tasks)
+    TasksView.generateTasks(title, sortedTasks)
+    CurrentMenuOption.setElement(element)
   })
 
   const addActiveClass = () => {
@@ -30,7 +33,9 @@ const MenuPriority = ({ id, color, title }, clickEvent, tasks) => {
     element.classList.remove('menu__priority--active')
   }
 
-  return { element, addActiveClass, removeActiveClass }
+  const updateTasks = (updatedTasks) => (sortedTasks = updatedTasks)
+
+  return { element, addActiveClass, removeActiveClass, updateTasks }
 }
 
 export default MenuPriority

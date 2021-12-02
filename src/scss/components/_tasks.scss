@@ -3,6 +3,7 @@
 .tasks-view {
   flex: 1;
   padding: 2rem;
+  overflow-y: scroll;
 
   &__title {
     color: $black;

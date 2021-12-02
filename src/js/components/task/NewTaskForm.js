@@ -1,5 +1,6 @@
 import Tags from '../../data/tags'
 import Tasks from '../../data/tasks'
+import Menu from '../menu/Menu'
 
 const NewTaskForm = (() => {
   let task = null
@@ -145,6 +146,7 @@ const NewTaskForm = (() => {
     } else {
       Tasks.addTask(taskObj)
     }
+    Menu.updateTasks()
     hide()
   })
 
@@ -177,9 +179,9 @@ const NewTaskForm = (() => {
 
   updateTags(Tags.getTags())
   updatePriorities([
-    { id: 0, color: '#FF6B6B', title: 'High' },
+    { id: 0, color: '#94D82D', title: 'Low' },
     { id: 1, color: '#FCC419', title: 'Medium' },
-    { id: 2, color: '#94D82D', title: 'Low' },
+    { id: 2, color: '#FF6B6B', title: 'High' },
   ])
 
   return { element, updateForm, hide, updateTags }

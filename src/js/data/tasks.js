@@ -3,7 +3,8 @@ const Tasks = (() => {
     if (localStorage.getItem('tasks')) {
       const loadedTasks = JSON.parse(localStorage.tasks)
       for (let task of loadedTasks) {
-        task.dueDate = new Date(parseInt(task.dueDate, 10))
+        if (task.dueDate) task.dueDate = new Date(parseInt(task.dueDate))
+        else task.dueDate = null
       }
       return loadedTasks
     }
@@ -17,11 +18,15 @@ const Tasks = (() => {
       : -1
 
   const saveToStorage = () => {
-    const tasksCopy = [...tasks]
-    for (let task of tasksCopy) {
-      if (task.dueDate) task.dueDate = +task.dueDate.getTime()
+    const tasksCopy = []
+    for (let task of tasks) {
+      let taskCopy = { ...task }
+      if (taskCopy.dueDate) {
+        taskCopy.dueDate = +taskCopy.dueDate
+      }
+      tasksCopy.push(taskCopy)
     }
-    localStorage.tasks = JSON.stringify(tasks)
+    localStorage.tasks = JSON.stringify(tasksCopy)
   }
 
   const getSortedTasks = () => {
