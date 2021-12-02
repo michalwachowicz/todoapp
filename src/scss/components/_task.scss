@@ -5,6 +5,7 @@
   align-items: flex-start;
   gap: 1rem;
   width: 100%;
+  cursor: pointer;
 
   &--done &__info__title,
   &--done &__info__desc {

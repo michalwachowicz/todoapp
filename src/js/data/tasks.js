@@ -12,10 +12,7 @@ const Tasks = (() => {
   }
 
   const tasks = loadFromStorage()
-  let lastId =
-    tasks.length > 0 && tasks[tasks.length - 1].id
-      ? tasks[tasks.length - 1].id
-      : -1
+  let lastId = tasks.length > 0 ? tasks[tasks.length - 1].id : -1
 
   const saveToStorage = () => {
     const tasksCopy = []
@@ -44,9 +41,10 @@ const Tasks = (() => {
   const getLastId = () => lastId
 
   const addTask = (task) => {
-    task.id = ++lastId
     tasks.push(task)
     saveToStorage()
+
+    lastId++
   }
 
   const updateTask = (id, task) => {

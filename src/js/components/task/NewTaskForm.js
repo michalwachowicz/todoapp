@@ -52,12 +52,16 @@ const NewTaskForm = (() => {
   const updateTags = (tagsList) => {
     tags.innerHTML = ''
 
-    for (let tag of [{ id: -1, title: 'Tag (Optional)' }, ...tagsList]) {
+    for (let tag of [
+      { id: -2, title: 'Tag (Optional)' },
+      { id: -1, title: 'None' },
+      ...tagsList,
+    ]) {
       const option = document.createElement('option')
       option.value = tag.id
       option.textContent = tag.title
 
-      if (tag.id === -1) {
+      if (tag.id === -2) {
         option.disabled = true
         option.selected = true
       }
@@ -73,14 +77,15 @@ const NewTaskForm = (() => {
     priorities.innerHTML = ''
 
     for (let priority of [
-      { id: -1, title: 'Priority (Optional)' },
+      { id: -2, title: 'Priority (Optional)' },
+      { id: -1, title: 'None' },
       ...prioritiesList,
     ]) {
       const option = document.createElement('option')
       option.value = priority.id
       option.textContent = priority.title
 
-      if (priority.id === -1) {
+      if (priority.id === -2) {
         option.disabled = true
         option.selected = true
       }
@@ -111,10 +116,11 @@ const NewTaskForm = (() => {
   deleteBtn.textContent = 'Delete'
   deleteBtn.type = 'button'
   deleteBtn.addEventListener('click', () => {
-    if (task && task.id) {
+    if (task && task.id > -1) {
       Tasks.removeTask(task.id)
-      hide()
+      Menu.updateTasks()
     }
+    hide()
   })
 
   btns.appendChild(submitBtn)
@@ -129,16 +135,16 @@ const NewTaskForm = (() => {
     e.preventDefault()
 
     const taskObj = {
-      id: task && task.id ? task.id : Tasks.getLastId(),
+      id: task && task.id > -1 ? task.id + 1 : Tasks.getLastId() + 1,
       title: title.value,
       description: desc.value ? desc.value : null,
       dueDate: date.value ? new Date(date.value) : null,
-      priorityId: priorities.value ? priorities.value : -1,
-      tagId: tags.value ? tags.value : -1,
+      priorityId: priorities.value > -1 ? priorities.value : -1,
+      tagId: tags.value > -1 ? tags.value : -1,
       done: task ? task.done : false,
     }
 
-    if (task && task.id) {
+    if (task && task.id > -1) {
       const index = Tasks.getTasks().findIndex((t) => t.id == task.id)
       if (index > -1) {
         Tasks.updateTask(index, taskObj)

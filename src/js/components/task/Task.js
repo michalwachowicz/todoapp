@@ -1,10 +1,11 @@
 import TaskStatusIcon from '../icons/TaskStatusIcon'
 import MenuPriorities from '../menu/priority/MenuPriorities'
-import MenuTags from '../menu/tag/MenuTags'
 import formatDistance from 'date-fns/formatDistance'
 import Tags from '../../data/tags'
+import NewTaskForm from './NewTaskForm'
+import Tasks from '../../data/tasks'
 
-const Task = ({ title, description, dueDate, priorityId, tagId, done }) => {
+const Task = ({ id, title, description, dueDate, priorityId, tagId, done }) => {
   const element = document.createElement('div')
   element.className = done ? 'task task--done' : 'task'
 
@@ -77,6 +78,12 @@ const Task = ({ title, description, dueDate, priorityId, tagId, done }) => {
 
   element.appendChild(icon)
   element.appendChild(info)
+  element.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    const task = Tasks.getTaskById(id)
+    if (task) NewTaskForm.updateForm(task)
+  })
 
   return element
 }
