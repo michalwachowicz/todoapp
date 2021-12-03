@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use './animations';
 
 .color-picker {
   position: absolute;
@@ -7,6 +8,7 @@
   border-radius: 0.5rem;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
   z-index: 9999;
+  @include animations.animation(scale, 0.25);
 
   * {
     z-index: 9999;

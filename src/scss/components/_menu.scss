@@ -1,4 +1,11 @@
 @use '../abstracts' as *;
+@use '../utilities/animations';
+
+@mixin activeClass {
+  background-color: $background-color;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+}
 
 .menu {
   min-width: 320px;
@@ -39,9 +46,7 @@
     }
 
     &--active {
-      background-color: #fff;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.25);
+      @include activeClass();
     }
   }
 
@@ -144,9 +149,7 @@
     cursor: pointer;
 
     &--active {
-      background-color: $background-color;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+      @include activeClass();
     }
 
     &__icon {

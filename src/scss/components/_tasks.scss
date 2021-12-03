@@ -1,4 +1,5 @@
-@use '../abstracts/variables' as *;
+@use '../abstracts' as *;
+@use '../utilities/animations';
 
 .tasks-view {
   flex: 1;
@@ -54,6 +55,12 @@
 
       path {
         fill: $main-color;
+      }
+    }
+
+    @include active {
+      .tasks-view__btn__icon {
+        @include animations.animation(bounce-up-down, 1, ease, true);
       }
     }
   }

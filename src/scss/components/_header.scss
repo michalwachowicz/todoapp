@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as *;
+@use '../utilities/animations';
 
 .header {
   position: relative;
@@ -36,6 +37,11 @@
 
       path {
         fill: $main-color;
+      }
+
+      &:hover,
+      &:active {
+        @include animations.animation(bounce-up-down, 1, ease, true);
       }
     }
   }

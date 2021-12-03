@@ -14,6 +14,9 @@ const TasksView = (() => {
   element.className = 'tasks-view'
 
   const generateTasks = (title, tagId, tasks) => {
+    const animationContainer = document.createElement('div')
+    animationContainer.className = 'animation-fade'
+
     const h1 = document.createElement('h1')
     h1.className = 'tasks-view__title'
     h1.textContent = title
@@ -33,11 +36,11 @@ const TasksView = (() => {
       header.appendChild(h1)
       header.appendChild(moreIcon)
 
-      element.appendChild(header)
+      animationContainer.appendChild(header)
     } else {
-      element.appendChild(h1)
+      animationContainer.appendChild(h1)
     }
-    element.appendChild(Divider())
+    animationContainer.appendChild(Divider())
 
     if (tasks.length > 0) {
       const tasksContainer = document.createElement('div')
@@ -48,9 +51,9 @@ const TasksView = (() => {
         tasksContainer.appendChild(taskItem)
         taskElements.push(taskItem)
       }
-      element.appendChild(tasksContainer)
+      animationContainer.appendChild(tasksContainer)
     } else {
-      element.appendChild(
+      animationContainer.appendChild(
         EmptyMessage(
           "It's pretty empty here 😕. Add a new task with the button below!"
         )
@@ -68,8 +71,10 @@ const TasksView = (() => {
     btn.appendChild(AddIcon('tasks-view__btn__icon'))
     btn.appendChild(btnTitle)
 
-    element.appendChild(Divider())
-    element.appendChild(btn)
+    animationContainer.appendChild(Divider())
+    animationContainer.appendChild(btn)
+
+    element.appendChild(animationContainer)
   }
 
   return { element, generateTasks }

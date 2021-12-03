@@ -15,3 +15,38 @@
     @content;
   }
 }
+
+@mixin active {
+  &:active,
+  &:hover {
+    @content;
+  }
+}
+
+@mixin button($font-size, $border-radius: false, $box-shadow: false) {
+  width: 100%;
+  border: none;
+  background: none;
+  font-size: $font-size;
+  font-weight: 500;
+  cursor: pointer;
+
+  @if $border-radius {
+    border-radius: 0.25rem;
+  }
+
+  @if $box-shadow {
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+  }
+}
+
+@mixin color-button($color, $bg-color) {
+  color: $color;
+  background-color: $bg-color;
+  transition: all 0.5s ease;
+
+  @include active {
+    background-color: lighten($bg-color, 5%);
+    transform: translateY(5%);
+  }
+}
