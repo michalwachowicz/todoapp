@@ -29,6 +29,13 @@
     font-weight: 500;
   }
 
+  &__desc {
+    margin-bottom: 1rem;
+    color: $dark-gray;
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+
   &__inputs {
     display: flex;
     height: 2.5rem;

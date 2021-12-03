@@ -1,3 +1,4 @@
+import { cleanContent } from '../../contentGenerator'
 import Tags from '../../data/tags'
 import Tasks from '../../data/tasks'
 import Menu from '../menu/Menu'
@@ -74,7 +75,7 @@ const NewTaskForm = (() => {
   priorities.className = 'task-form__form__select'
 
   const updatePriorities = (prioritiesList) => {
-    priorities.innerHTML = ''
+    cleanContent(priorities)
 
     for (let priority of [
       { id: -2, title: 'Priority (Optional)' },

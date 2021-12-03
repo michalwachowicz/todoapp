@@ -6,6 +6,7 @@ import Menu from '../Menu'
 import Tasks from '../../../data/tasks'
 import Tags from '../../../data/tags'
 import NewTaskForm from '../../task/NewTaskForm'
+import { cleanContent } from '../../../contentGenerator'
 
 const MenuTags = (() => {
   let tagElements = []
@@ -15,7 +16,7 @@ const MenuTags = (() => {
   const filter = (tasks, tag) => tasks.filter((task) => task.tagId == tag.id)
 
   const generateTags = (tags) => {
-    element.innerHTML = ''
+    cleanContent(element)
     element.appendChild(MenuTitle('Tags'))
     tagElements = []
 
@@ -24,14 +25,7 @@ const MenuTags = (() => {
       tagsContainer.className = 'menu__tags'
 
       for (let tag of tags) {
-        const tagElement = MenuTag(
-          tag,
-          () => {
-            Menu.cleanActives()
-            tagElement.addActiveClass()
-          },
-          filter(Tasks.getSortedTasks(), tag)
-        )
+        const tagElement = MenuTag(tag, filter(Tasks.getSortedTasks(), tag))
 
         tagElements.push(tagElement)
         tagsContainer.appendChild(tagElement.element)
@@ -45,11 +39,11 @@ const MenuTags = (() => {
         )
       )
     }
+    NewTaskForm.updateTags(tagElements)
+
     element.appendChild(
       NewTagBtn((tag) => {
-        Tags.addTag(tag)
-        NewTaskForm.updateTags(Tags.getTags())
-
+        Tags.addTag({ id: Tags.getLastId() + 1, ...tag })
         generateTags(Tags.getTags())
       })
     )
@@ -66,7 +60,13 @@ const MenuTags = (() => {
     }
   }
 
-  return { element, generateTags, tagElements, updateTasks }
+  const cleanActives = () => {
+    for (let i = 0; i < tagElements.length; i++) {
+      tagElements[i].removeActiveClass()
+    }
+  }
+
+  return { element, generateTags, tagElements, updateTasks, cleanActives }
 })()
 
 export default MenuTags

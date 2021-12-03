@@ -16,12 +16,9 @@ const Menu = (() => {
   element.appendChild(MenuPriorities.element)
 
   const cleanActives = () => {
+    MenuTags.cleanActives()
     for (let option of MenuOptions.menuOptions) {
       option.removeActiveClass()
-    }
-
-    for (let tag of MenuTags.tagElements) {
-      tag.removeActiveClass()
     }
 
     for (let priority of MenuPriorities.priorityElements) {

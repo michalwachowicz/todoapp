@@ -1,5 +1,7 @@
 export const cleanContent = (node) => {
-  node.innerHTML = ''
+  while (node.firstChild) {
+    node.removeChild(node.firstChild)
+  }
 }
 
 export const generateContent = (node, content) => {

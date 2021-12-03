@@ -1,3 +1,4 @@
+import { cleanContent } from '../../../contentGenerator'
 import Tasks from '../../../data/tasks'
 import Menu from '../Menu'
 import MenuTitle from '../MenuTitle'
@@ -35,7 +36,7 @@ const MenuPriorities = (() => {
       prioritiesContainer.appendChild(priorityElement.element)
     }
 
-    element.innerHTML = ''
+    cleanContent(element)
     element.appendChild(MenuTitle('Priorities'))
     element.appendChild(prioritiesContainer)
   }

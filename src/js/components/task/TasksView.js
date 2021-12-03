@@ -1,3 +1,4 @@
+import { cleanContent } from '../../contentGenerator'
 import Tags from '../../data/tags'
 import Divider from '../Divider'
 import EmptyMessage from '../EmptyMessage'
@@ -17,7 +18,7 @@ const TasksView = (() => {
     h1.className = 'tasks-view__title'
     h1.textContent = title
 
-    element.innerHTML = ''
+    cleanContent(element)
     if (tagId > -1) {
       const header = document.createElement('header')
       header.className = 'tasks-view__header'

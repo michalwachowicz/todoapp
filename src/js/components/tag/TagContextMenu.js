@@ -1,3 +1,4 @@
+import TagDeletePopup from './TagDeletePopup'
 import TagEditPopup from './TagEditPopup'
 
 const TagContextMenu = (() => {
@@ -21,7 +22,7 @@ const TagContextMenu = (() => {
   deleteBtn.className = 'tag-menu__btn tag-menu__btn--delete'
   deleteBtn.textContent = 'Delete'
   deleteBtn.addEventListener('click', () => {
-    // Open delete popup
+    TagDeletePopup.generatePopup(tagId)
     hide()
   })
 

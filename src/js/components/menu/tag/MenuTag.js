@@ -1,9 +1,10 @@
+import Menu from '../Menu'
 import MoreIcon from '../../icons/MoreIcon'
 import TasksView from '../../task/TasksView'
 import TagContextMenu from '../../tag/TagContextMenu'
 import CurrentMenuOption from '../CurrentMenuOption'
 
-const MenuTag = ({ id, color, title }, clickEvent, tasks) => {
+const MenuTag = ({ id, color, title }, tasks) => {
   let sortedTasks = tasks
 
   const element = document.createElement('div')
@@ -29,11 +30,12 @@ const MenuTag = ({ id, color, title }, clickEvent, tasks) => {
 
     if (e.target == moreIcon || moreIcon.contains(e.target)) {
       TagContextMenu.generateMenu(id, e.x, e.y)
-      return
+    } else {
+      TasksView.generateTasks(title, id, sortedTasks)
+      CurrentMenuOption.setElement(element)
+      Menu.cleanActives()
+      addActiveClass()
     }
-    clickEvent()
-    TasksView.generateTasks(title, id, sortedTasks)
-    CurrentMenuOption.setElement(element)
   })
 
   const addActiveClass = () => {

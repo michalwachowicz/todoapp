@@ -1,5 +1,6 @@
 import AddIcon from '../../icons/AddIcon'
 import ColorPicker from '../../ColorPicker'
+import { cleanContent } from '../../../contentGenerator'
 
 const NewTagBtn = (submitEvent) => {
   const element = document.createElement('div')
@@ -17,7 +18,7 @@ const NewTagBtn = (submitEvent) => {
     btn.appendChild(h4)
     btn.addEventListener('click', generateForm)
 
-    element.innerHTML = ''
+    cleanContent(element)
     element.appendChild(btn)
   }
 
@@ -57,14 +58,13 @@ const NewTagBtn = (submitEvent) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault()
 
-      generateButton()
       submitEvent({
         color: currentColor.getAttribute('data-color'),
         title: nameInput.value,
       })
     })
 
-    element.innerHTML = ''
+    cleanContent(element)
     element.appendChild(form)
   }
 

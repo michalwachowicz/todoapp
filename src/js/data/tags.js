@@ -1,8 +1,7 @@
 // id, title, color
 const Tags = (() => {
   const tags = localStorage.getItem('tags') ? JSON.parse(localStorage.tags) : []
-  let lastId =
-    tags.length > 0 && tags[tags.length - 1].id ? tags[tags.length - 1] : -1
+  let lastId = tags.length > 0 ? tags[tags.length - 1].id : -1
 
   const saveToStorage = () => (localStorage.tags = JSON.stringify(tags))
 
@@ -11,9 +10,10 @@ const Tags = (() => {
   const getLastId = () => lastId
 
   const addTag = (tag) => {
-    tag.id = ++lastId
     tags.push(tag)
     saveToStorage()
+
+    lastId++
   }
 
   const removeTag = (id) => {
@@ -25,8 +25,11 @@ const Tags = (() => {
   }
 
   const updateTag = (id, tag) => {
-    tags[id] = tag
-    saveToStorage()
+    const index = tags.findIndex((tag) => tag.id == id)
+    if (index > -1) {
+      tags.splice(id, 1, tag)
+      saveToStorage()
+    }
   }
 
   return { getTagById, getTags, getLastId, addTag, removeTag, updateTag }
