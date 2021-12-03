@@ -4,19 +4,24 @@ import formatDistance from 'date-fns/formatDistance'
 import Tags from '../../data/tags'
 import NewTaskForm from './NewTaskForm'
 import Tasks from '../../data/tasks'
+import Menu from '../menu/Menu'
 
 const Task = ({ id, title, description, dueDate, priorityId, tagId, done }) => {
   const element = document.createElement('div')
   element.className = done ? 'task task--done' : 'task'
 
-  const icon = TaskStatusIcon(
-    done
-      ? 'done'
-      : priorityId > -1
-      ? MenuPriorities.getPriorityById(priorityId).title.toLowerCase()
-      : 'none',
-    'task__icon'
-  )
+  const getIcon = () =>
+    TaskStatusIcon(
+      done
+        ? 'done'
+        : priorityId > -1
+        ? MenuPriorities.getPriorityById(priorityId).title.toLowerCase()
+        : 'none',
+      'task__icon'
+    )
+
+  let icon = getIcon()
+
   const info = document.createElement('div')
   info.className = 'task__info'
 
@@ -81,8 +86,21 @@ const Task = ({ id, title, description, dueDate, priorityId, tagId, done }) => {
   element.addEventListener('click', (e) => {
     e.preventDefault()
 
-    const task = Tasks.getTaskById(id)
-    if (task) NewTaskForm.updateForm(task)
+    if (e.target == icon || icon.contains(e.target)) {
+      Tasks.updateTask(id, {
+        id,
+        title,
+        description,
+        dueDate,
+        priorityId,
+        tagId,
+        done: !done,
+      })
+      Menu.updateTasks()
+    } else {
+      const task = Tasks.getTaskById(id)
+      if (task) NewTaskForm.updateForm(task)
+    }
   })
 
   return element

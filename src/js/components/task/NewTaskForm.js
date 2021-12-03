@@ -171,6 +171,9 @@ const NewTaskForm = (() => {
       title.value = task.title
       desc.value = task.description
       if (task.dueDate) date.value = task.dueDate.toISOString().substring(0, 10)
+
+      priorities.value = task.priorityId
+      tags.value = task.tagId
     } else {
       h2.textContent = 'Add new task:'
       submitBtn.textContent = 'Add'
@@ -179,6 +182,9 @@ const NewTaskForm = (() => {
       title.value = ''
       desc.value = ''
       date.value = ''
+
+      priorities.value = -2
+      tags.value = -2
     }
     show()
   }

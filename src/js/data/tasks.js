@@ -48,8 +48,11 @@ const Tasks = (() => {
   }
 
   const updateTask = (id, task) => {
-    tasks[id] = task
-    saveToStorage()
+    const index = tasks.findIndex((task) => task.id == id)
+    if (index > -1) {
+      tasks.splice(id, 1, task)
+      saveToStorage()
+    }
   }
 
   const removeTask = (id) => {
