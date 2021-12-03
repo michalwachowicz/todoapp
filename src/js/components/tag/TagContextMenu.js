@@ -1,3 +1,5 @@
+import TagEditPopup from './TagEditPopup'
+
 const TagContextMenu = (() => {
   let tagId = -1
   const element = document.createElement('div')
@@ -11,7 +13,7 @@ const TagContextMenu = (() => {
   editBtn.className = 'tag-menu__btn tag-menu__btn--edit'
   editBtn.textContent = 'Edit'
   editBtn.addEventListener('click', () => {
-    // Open edit popup
+    TagEditPopup.generatePopup(tagId)
     hide()
   })
 

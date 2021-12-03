@@ -124,8 +124,8 @@ const NewTaskForm = (() => {
   })
 
   btns.appendChild(submitBtn)
-  btns.appendChild(cancelBtn)
   btns.appendChild(deleteBtn)
+  btns.appendChild(cancelBtn)
 
   form.appendChild(formInputs)
   form.appendChild(additionals)

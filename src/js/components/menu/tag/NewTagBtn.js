@@ -35,7 +35,7 @@ const NewTagBtn = (submitEvent) => {
 
     colorPicker.addEventListener('click', (e) => {
       e.preventDefault()
-      ColorPicker.generate(currentColor, e.x, e.clientY)
+      ColorPicker.generate(currentColor, e.x, e.y)
     })
     colorPicker.appendChild(currentColor)
 

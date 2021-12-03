@@ -1,3 +1,4 @@
+import Tags from '../../data/tags'
 import Divider from '../Divider'
 import EmptyMessage from '../EmptyMessage'
 import AddIcon from '../icons/AddIcon'
@@ -22,9 +23,11 @@ const TasksView = (() => {
       header.className = 'tasks-view__header'
 
       const moreIcon = MoreIcon('tasks-view__icon--more')
-      moreIcon.addEventListener('click', (e) =>
+      moreIcon.addEventListener('click', (e) => {
         TagContextMenu.generateMenu(tagId, e.clientX, e.clientY)
-      )
+      })
+      const tag = Tags.getTagById(tagId)
+      if (tag) h1.textContent = tag.title
 
       header.appendChild(h1)
       header.appendChild(moreIcon)
