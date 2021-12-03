@@ -5,6 +5,22 @@
   padding: 2rem;
   overflow-y: scroll;
 
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__icon--more {
+    width: 2.25rem;
+    height: 2.25rem;
+    cursor: pointer;
+
+    path {
+      fill: $dark-gray;
+    }
+  }
+
   &__title {
     color: $black;
     font-size: 4rem;

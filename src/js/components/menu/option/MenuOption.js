@@ -27,7 +27,7 @@ const MenuOption = (icon, title, tasks) => {
       e.preventDefault()
 
       clickEvent()
-      TasksView.generateTasks(title, sortedTasks)
+      TasksView.generateTasks(title, -1, sortedTasks)
       CurrentMenuOption.setElement(element)
     })
   }

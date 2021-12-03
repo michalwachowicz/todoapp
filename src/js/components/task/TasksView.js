@@ -1,6 +1,8 @@
 import Divider from '../Divider'
 import EmptyMessage from '../EmptyMessage'
 import AddIcon from '../icons/AddIcon'
+import MoreIcon from '../icons/MoreIcon'
+import TagContextMenu from '../tag/TagContextMenu'
 import NewTaskForm from './NewTaskForm'
 import Task from './Task'
 
@@ -9,13 +11,28 @@ const TasksView = (() => {
   const element = document.createElement('main')
   element.className = 'tasks-view'
 
-  const generateTasks = (title, tasks) => {
+  const generateTasks = (title, tagId, tasks) => {
     const h1 = document.createElement('h1')
     h1.className = 'tasks-view__title'
     h1.textContent = title
 
     element.innerHTML = ''
-    element.appendChild(h1)
+    if (tagId > -1) {
+      const header = document.createElement('header')
+      header.className = 'tasks-view__header'
+
+      const moreIcon = MoreIcon('tasks-view__icon--more')
+      moreIcon.addEventListener('click', (e) =>
+        TagContextMenu.generateMenu(tagId, e.clientX, e.clientY)
+      )
+
+      header.appendChild(h1)
+      header.appendChild(moreIcon)
+
+      element.appendChild(header)
+    } else {
+      element.appendChild(h1)
+    }
     element.appendChild(Divider())
 
     if (tasks.length > 0) {
