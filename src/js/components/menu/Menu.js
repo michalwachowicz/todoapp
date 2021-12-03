@@ -7,7 +7,7 @@ import CurrentMenuOption from './CurrentMenuOption'
 
 const Menu = (() => {
   const element = document.createElement('aside')
-  element.className = 'menu'
+  element.className = 'menu hidden'
 
   element.appendChild(MenuOptions.element)
   element.appendChild(Divider())

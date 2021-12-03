@@ -51,7 +51,7 @@ const NewTaskForm = (() => {
   tags.className = 'task-form__form__select'
 
   const updateTags = (tagsList) => {
-    tags.innerHTML = ''
+    cleanContent(tags)
 
     for (let tag of [
       { id: -2, title: 'Tag (Optional)' },
@@ -146,10 +146,7 @@ const NewTaskForm = (() => {
     }
 
     if (task && task.id > -1) {
-      const index = Tasks.getTasks().findIndex((t) => t.id == task.id)
-      if (index > -1) {
-        Tasks.updateTask(index, taskObj)
-      }
+      Tasks.updateTask(task.id, taskObj)
     } else {
       Tasks.addTask(taskObj)
     }

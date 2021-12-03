@@ -53,7 +53,7 @@ const Tasks = (() => {
   const updateTask = (id, task) => {
     const index = tasks.findIndex((task) => task.id == id)
     if (index > -1) {
-      tasks.splice(id, 1, task)
+      tasks[index] = task
       saveToStorage()
     }
   }

@@ -4,6 +4,7 @@
 .tasks-view {
   flex: 1;
   padding: 2rem;
+  min-width: 320px;
   overflow-y: scroll;
 
   &__header {

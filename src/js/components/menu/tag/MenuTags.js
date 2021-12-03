@@ -39,7 +39,7 @@ const MenuTags = (() => {
         )
       )
     }
-    NewTaskForm.updateTags(tagElements)
+    NewTaskForm.updateTags(Tags.getTags())
 
     element.appendChild(
       NewTagBtn((tag) => {
@@ -54,7 +54,7 @@ const MenuTags = (() => {
     const tags = Tags.getTags()
 
     if (tags.length > 0) {
-      for (let i = 0; i < tags.length; i++) {
+      for (let i = 0; i < tagElements.length; i++) {
         tagElements[i].updateTasks(filter(updatedTasks, tags[i]))
       }
     }

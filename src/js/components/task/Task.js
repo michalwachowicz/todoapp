@@ -44,20 +44,22 @@ const Task = ({ id, title, description, dueDate, priorityId, tagId, done }) => {
 
   if (tagId > -1) {
     const tag = Tags.getTagById(tagId)
-    const tagContainer = document.createElement('div')
-    tagContainer.className = 'task__info__tag'
+    if (tag) {
+      const tagContainer = document.createElement('div')
+      tagContainer.className = 'task__info__tag'
 
-    const tagTitle = document.createElement('h3')
-    tagTitle.className = 'task__info__tag__title'
-    tagTitle.textContent = tag.title
+      const tagTitle = document.createElement('h3')
+      tagTitle.className = 'task__info__tag__title'
+      tagTitle.textContent = tag.title
 
-    const tagColor = document.createElement('div')
-    tagColor.className = 'task__info__tag__color'
-    tagColor.style.backgroundColor = tag.color
+      const tagColor = document.createElement('div')
+      tagColor.className = 'task__info__tag__color'
+      tagColor.style.backgroundColor = tag.color
 
-    tagContainer.appendChild(tagTitle)
-    tagContainer.appendChild(tagColor)
-    additional.appendChild(tagContainer)
+      tagContainer.appendChild(tagTitle)
+      tagContainer.appendChild(tagColor)
+      additional.appendChild(tagContainer)
+    }
   }
 
   if (dueDate) {
