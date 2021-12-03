@@ -28,11 +28,14 @@ const Tasks = (() => {
 
   const getSortedTasks = () => {
     return [...tasks].sort((task1, task2) => {
+      const priority1 = task1.done ? -99 : task1.priorityId
+      const priority2 = task2.done ? -99 : task2.priorityId
+
+      if (priority1 > priority2) return -1
+      if (priority1 < priority2) return 1
+
       if (task1.dueDate < task2.dueDate) return -1
       if (task1.dueDate > task2.dueDate) return 1
-
-      if (task1.priorityId > task2.priorityId) return -1
-      if (task1.priorityId < task2.priorityId) return 1
     })
   }
 
