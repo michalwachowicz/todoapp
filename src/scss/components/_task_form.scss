@@ -75,10 +75,12 @@
     &__select,
     &__date {
       height: 2.2rem;
+      width: 100%;
+      padding: 0.5rem;
       border: none;
       border-right: 1px solid $stroke-color;
+      -webkit-appearance: none;
       font-family: $font-stack;
-      padding: 0.5rem;
 
       @include phone {
         border-right: none;
@@ -110,28 +112,18 @@
     }
 
     &__btn {
-      padding: 0.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      background: none;
-      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.25);
-      font-size: 1.25rem;
-      font-weight: 500;
+      @include button(1.25rem, true, true);
 
       &--submit {
-        color: #fff;
-        background-color: #82c91e;
+        @include color-button(#fff, #82c91e);
       }
 
       &--cancel {
-        color: $black;
-        background-color: #ced4da;
+        @include color-button($black, #ced4da);
       }
 
       &--delete {
-        color: #fff;
-        background-color: #e03131;
+        @include color-button(#fff, #e03131);
       }
     }
   }
