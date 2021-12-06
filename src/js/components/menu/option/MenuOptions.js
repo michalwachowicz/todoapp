@@ -10,10 +10,7 @@ const MenuOptions = (() => {
   const element = document.createElement('div')
 
   const filterFunctions = [
-    (updatedTasks) =>
-      updatedTasks.filter(
-        (task) => task.tagId < 0 && task.priorityId < 0 && task.dueDate == null
-      ),
+    (updatedTasks) => updatedTasks,
     (updatedTasks) =>
       updatedTasks.filter((task) => {
         const currentDate = new Date()
